@@ -1,0 +1,139 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}{{ job.position }} | EasyJob{% endblock %}
+
+{% block content %} 
+
+    <div class="container mt-4">
+        
+        <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+            <a href="/myjob">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="row">
+            {% if messages %}
+                {% for message in messages %}
+                    
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            
+            <div class="col" >
+
+                <form class="d-flex justify-content-center" action="/CreateJob" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card mb-4 me-4 mt-2 " id="form-add" >
+                        <div class="row g-0">
+                            <div class="col">
+                                <div class="mb-3 me-4 mt-4 mx-3" >
+                                    <!-- <div class="row g-0 d-flex justify-content-start">
+                                        <div class="col d-flex mt-3 mx-4 ">
+                                            <img src="{% static 'home/images/profile-pic.jpeg' %}" class="img-fluid rounded-start mb-3" width="200" height="400" alt="...">
+                                            
+                                            <div class="mt-2 mx-3 fw-bold">
+                                                LOGO <input type="file" class="form-control pt-2 mt-2" id="avatar" name="logo" >  
+                                            </div>
+                                            
+
+                                            
+                                       
+                                        </div>
+                                        
+                                    </div> -->
+                                    <div class="row mt-2 mb-3 d-flex justify-content-between">
+                                        
+                                        <!-- <div class="col-md-4 col-sm-6">
+                                            <strong class="h6">ประเภทธุรกิจ</strong><br>
+                                            <select class="form-control" placeholder="ประเภทธุรกิจ" name="category" id="" required>
+                                                <option >คอมพิวเตอร์/ไอที/โปรแกรมเมอร์</option>
+                                                <option >โรงแรม/ท่องเที่ยว</option>
+                                                <option >ขนส่งและโลจิสติกส์</option>
+                                                <option >กราฟฟิก ดีไซน์, โฆษณา / ประชาสัมพันธ์</option>
+                                                <option >อิ่นๆ</option>
+                                            </select>
+                                        </div> -->
+                                        <div class="col-md-3 col-sm-6">
+                                            <strong class="h6">รูปแบบงาน</strong><br>
+                                            <input type="text" class="form-control pt-2" name="type" id="" required>
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <strong class="h6">เงินเดือน</strong><br>
+                                            <input type="integer" class="form-control pt-2"  name="salary" id="" required> 
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <strong class="h6">GPA</strong><br>
+                                            <input type="" class="form-control pt-2"  name="gpa" id="" required>
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <strong class="h6">รับจำนวน</strong><br>
+                                            <input type="text" class="form-control pt-2"  name="quantity" id="" required> 
+                                        </div>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            
+                        </div><hr class="mx-4 mt-4 mb-3" style="width: 96%;">
+                        <div class="col">
+                            <div class="row mb-3  d-flex justify-content-between ">
+                                <div class="col-md-4 col-sm-6 mx-3">
+                                    <strong class="h6">ตำแหน่ง</strong><br>
+                                    <input type="text" class="form-control pt-2" name="position" id="" required> 
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <strong class="h6">ประสบการณ์ (ปี)</strong><br>
+                                    <input type="text" class="form-control pt-2" name="experience" id="" required>
+                                </div>
+                                <div class="col-md-3 me-4">
+                                    <strong class="h6">เวลาทำงาน</strong><br>
+                                    <input type="text" class="form-control pt-2" name="working_time" id="" required>
+                                </div>
+                                
+                            </div><hr class="mx-4 mt-4 mb-3" style="width: 96%;">
+                            
+
+                            <div class="col-md-6 mx-4 mb-3" style="width: 90%;">
+                                <strong >รายละเอียดงาน</strong><br>
+                                <textarea type="" class="form-control pt-2" style="border-radius: 1rem; height: 3cm;" name="description" id="" ></textarea>
+                            </div>
+
+                            <div class="col-md-6 mx-4 mb-3" style="width: 90%;">
+                                <strong >คุณสมบัติผู้สมัคร</strong><br>
+                                <textarea type="" class="form-control pt-2" style="border-radius: 1rem; height: 3cm;" name="property" id="" ></textarea> 
+                            </div>  
+
+                            <div class="col-md-6 mx-4 mb-3" style="width: 90%;">
+                                <strong >สวัสดิการ</strong><br>
+                                <textarea type="" class="form-control pt-2" style="border-radius: 1rem; height: 3cm;" name="welfare" id="" ></textarea> 
+                            </div><hr class="mx-4" style="width: 96%;">
+                            
+                            
+                            <div class="mx-3 mb-3 mt-4 d-flex justify-content-md-end">
+                                <button class="btn text-light" style="background-color: #10a1ce;" type="submit">ตกลง</button>
+
+                                <button type="button" class="btn me-md-2 mx-4 " style="background-color: #C64B16;">
+                                    <a href="/myjob"><span class="text-light">ยกเลิก</span></a>
+                                </button>  
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+                </form>
+            </div>
+           
+
+        </div>
+
+    </div> 
+
+{% endblock %}

@@ -1,0 +1,229 @@
+<div class="row">
+        
+    <div class="card card-search mt-3" style="width: 80%; height: 4rem;" >
+        <form method="get">
+            <!-- {{myFilter.form}} -->
+            
+            ชื่อบริษัท {{myFilter.form.compname}} 
+            ตำแหน่งงาน {{myFilter.form.position}} 
+            คุณสมบัติ/ทักษะ {{myFilter.form.property}}
+            ประเภทงาน {{myFilter.form.category}}
+
+
+            <button class="btn btn-primary mx-2" type="submit">Search</button>
+            
+            
+        </form>
+
+    </div>
+
+
+
+
+</div> 
+
+<div class="col" style="width: 400px;">
+
+    <div class="card mx-5">
+        
+            <div class="card-block">
+                <h5 class="d-flex justify-content-md-center mt-2">ค้นหางาน</h5>
+                <div class="card-text mt-4 mx-2">
+                    <form method="get">
+                        <div class="mb-3 mx-1">
+                            <label class="form-label">*ประเภทงาน*</label>
+                            {{myFilter.form.category}}
+                            <!-- <input type="text" class="form-control" id="" value=""> -->
+                        </div>
+
+                        <div class="mb-3 mx-1">
+                            <label class="form-label">*ตำแหน่งงาน*</label>
+                            {{myFilter.form.position}}
+
+                            <!-- 
+                            <input type="text" class="form-control" id="" name="search"> -->
+                        </div>
+                        
+
+                        <div class="d-grid justify-content-between mx-1">
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="validationFormCheck2" name="search" required>
+                                <label class="form-check-label" for="validationFormCheck2">ฝึกงาน</label>                               
+                            </div>
+
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="validationFormCheck2" name="search" required>
+                                <label class="form-check-label" for="validationFormCheck2">งานประจำ</label>
+                            </div>
+
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" id="validationFormCheck2" name="search" required>
+                                <label class="form-check-label" for="validationFormCheck2">งานพาร์ทไทม์</label>
+                            </div>  
+
+                        </div>  
+                        
+                        <div class="d-flex gap-4 mb-2 mt-4 justify-content-center">
+                            <button class="btn btn-primary" style="width: 100%;" type="submit">ค้นหา</button>
+                        </div>  
+                    </form> 
+                </div>
+            </div>
+        
+
+    </div>
+</div>
+
+<!-- Update_Image -->
+
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}แก้ไข {{ jobs.position }} | EasyJob{% endblock %}
+
+{% block content %} 
+
+    <div class="container mt-2">
+         
+        <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+            <a href="/myjob">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="row">
+            
+          
+            <div class="col mb-3" >
+                <form class="d-flex justify-content-center" action="/{{ jobs.id }}/Update_Image" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="card mb-3 me-4 mt-3 " id="form-add" >
+                        <div class="row g-0 d-flex justify-content-center">
+                                                
+                            <div class="col d-flex mt-3 mx-4 ">
+                                
+                                <img src="{% static jobs.logo.url %}" class="img-fluid rounded-start mb-3" width="200" height="400" alt="...">
+                                
+                                <div class="mt-2 mx-3 fw-bold">
+                                    LOGO 
+                                    
+                                    <input type="file" class="form-control pt-2 mt-2" id="file-input" name="logo" accept="image/png, image/jpeg" value="{{ jobs.logo.url }}">  
+                                </div><br>
+                                
+                            </div>
+                            <div class="mx-3 mb-3 d-flex justify-content-md-end">                     
+                                <button class="btn mx-4 text-light" style="background-color: #1C8EB2;" type="submit">ตกลง</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </form>
+                <form class="d-flex justify-content-center" action="/{{ jobs.id }}/Edit" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}               
+                    <div class="card mb-3 me-4 mt-3 " id="form-add" >
+                        <!-- <div class="row g-0 d-flex ">
+                                                
+                            <div class="col d-flex mt-3 mx-4 ">
+                                
+                                <img src="{% static jobs.logo.url %}" class="img-fluid rounded-start mb-3" width="200" height="400" alt="...">
+                                
+                                <div class="mt-2 mx-3 fw-bold">
+                                    LOGO <br />
+                                    
+                                    <input type="file" class=" pt-2 mt-2" id="logo" name="logo" value="{{jobs.logo.url}}">
+                                </div><br>
+                                
+                            </div>
+                            
+                        </div> -->
+                        
+                        <div class="row g-0">
+                            <div class="col">
+                                <div class="mb-3 me-4 mt-4 mx-3" >
+                                    
+                                    <div class="row mt-2 mb-3 d-flex justify-content-between">
+                                        <div class="col-md-4 col-sm-6">
+                                            <strong class="h6">ประเภทธุรกิจ</strong><br>
+                                            <input type="text" class="form-control pt-2" name="category" id="" value="{{ jobs.category }}" > 
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <strong class="h6">รูปแบบงาน</strong><br>
+                                            <input type="text" class="form-control pt-2" name="type" id=""value="{{ jobs.type }}" >
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <strong class="h6">GPA</strong><br>
+                                            <input type="" class="form-control pt-2" style="width: 40%;" name="gpa" id="" value="{{ jobs.gpa}}">
+                                        </div>
+                                    </div><hr class="mx-2" style="width: 99%;">
+                                     
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col">
+                            <div class="row mx-2 mb-3 d-flex justify-content-between">
+                                <div class="col-md-4 col-sm-6">
+                                    <strong class="h6">ตำแหน่ง</strong><br>
+                                    <input type="text" class="form-control pt-2" name="position" id="" value="{{ jobs.position}}"> 
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <strong class="h6">ประสบการณ์</strong><br>
+                                    <input type="text" class="form-control pt-2" name="experience" id="" value="{{ jobs.experience }}">
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <strong class="h6">เงินเดือน</strong><br>
+                                    <input type="integer" class="form-control pt-2" style="width: 40%;" name="salary" id="" value="{{ jobs.salary }}"> 
+                                </div>
+                                
+                            </div><hr class="mx-4" style="width: 96%;">
+
+                            <div class="row mx-2 mb-3">
+                                <div class="col-md-3 ">
+                                    <strong class="h6">รับจำนวน</strong><br>
+                                    <input type="text" class="form-control pt-2" style="width: 30%;" name="quantity" id="" value="{{ jobs.quantity }}"> 
+                                </div>
+                                <div class="col-md-3 ">
+                                    <strong class="h6">เวลาทำงาน</strong><br>
+                                    <input type="text" class="form-control pt-2" name="working_time" id="" value="{{ jobs.working_time }}">
+                                </div>
+                                
+                                
+                            </div><hr class="mx-4" style="width: 96%;">
+                            
+                            
+                            <div class="col-md-6 mx-4 mb-3" style="width: 90%;">
+                                <strong >รายละเอียดงาน</strong><br>
+                                <textarea type="text" class="form-control pt-2" style="border-radius: 1rem; height: 3cm;" name="description"  value="">{{ jobs.description }}</textarea>
+                            </div><hr class="mx-4" style="width: 96%;">
+
+                            <div class="col-md-6 mx-4 mb-3" style="width: 90%;">
+                                <strong >คุณสมบัติผู้สมัคร</strong><br>
+                                <textarea type="text" class="form-control pt-2" style="border-radius: 1rem; height: 3cm;" name="property" value="" >{{ jobs.property }}</textarea>
+                            </div><hr class="mx-4" style="width: 96%;">
+
+                            <div class="col-md-6 mx-4 mb-3" style="width: 90%;">
+                                <strong >สวัสดิการ</strong><br>
+                                <textarea type="" class="form-control pt-2" style="border-radius: 1rem; height: 3cm;" name="welfare"  value="" >{{ jobs.welfare }}</textarea>
+                            </div><hr class="mx-4" style="width: 96%;">
+                           
+                            
+                            <div class="mx-3 mb-3 mt-4 d-flex justify-content-md-center">
+                                <button class="btn mx-4 text-light" style="background-color: #1C8EB2; font-size: large;" type="submit">อัปเดตการเปลี่ยนแปลง</button>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </form>
+            </div>
+            
+
+        </div>
+
+    </div> 
+
+   
+
+{% endblock %}

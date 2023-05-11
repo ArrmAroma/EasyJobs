@@ -1,0 +1,189 @@
+html {
+    font-size: calc(60% + 0.8vmin);
+}
+
+body {
+    background-color: #e2e2e2 ;
+    /* background-image: url(../../static/home/images/4238287.jpg); */
+    
+    /* #F4F4F1 */
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#card-search {
+    margin-bottom: 0;
+}
+#login_bg {
+    background: "/home/static/images/OJXL4E0.jpg" 
+}
+
+a:link { 
+    text-decoration: none; 
+}
+
+#navbar-base {
+    background-color: #12213F  ;
+    /* 12213F */
+}
+
+#btn {
+    background-color: #f8f4ee;
+    color: rgb(0, 0, 0);
+    font-weight: 900;
+    height: 100%;
+    padding: revert;
+    
+
+}
+
+#btn:hover {
+    background-color: #f7dd8b;
+    color: #000;
+}
+#card-login {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    
+}
+
+#card-add {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+    width: 40%;
+    justify-content: center;
+}
+
+#card-bg {
+    background-color: #FFFCFC;
+    box-shadow: 0 5px 15px rgb(0, 0, 0, .2);
+    
+}
+
+.card-header {
+    background-color: #2D82B2;
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+.card-search {
+    display: flex;
+    justify-content: center;
+    margin: 0 7.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    justify-content: center; 
+}
+
+.card-title {
+    height: auto;
+    margin-bottom: 15px;
+    
+}
+
+.card-text {
+    text-overflow: ellipsis; /* เพิ่ม ... จุดจุดจุดท้ายสุด */ 
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.card-footer {
+    background-color: #c9e0ee;
+}
+.card-job {
+    box-shadow: 0 5px 15px rgb(0, 0, 0, .2);
+}
+
+
+
+.flex-container {
+
+    display: flex;
+
+    justify-content: center;     
+    padding: 15px;
+    gap: 5px;
+
+}
+
+.flex-container > div{
+    background: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    padding: 8px;
+}
+
+#card1 { 
+    /* flex:0 1 300px; */
+    flex-basis: 1000px;
+    height: 100%;
+}
+        
+#card2 { 
+    /* flex:0 1 10%; */
+    flex-shrink:1;
+    flex-basis:25%;
+    height: 100%;
+    
+}
+
+
+
+.form-check {
+    font-size: 15px;
+}
+
+#star {
+    color: #848623;
+}
+.h6 {
+    font-weight: 600;
+    font-size: large;
+}
+#form-add {
+    background-color: #ffffff;
+    width: 70%;
+    /* #e6f0f3 */
+}
+
+.showPasswordToggle {
+    cursor: pointer;
+    transition: all;
+}
+
+.showPasswordToggle:hover {
+    transition: scale(1.2);
+}
+
+.text-menu {
+    font-size: 18px;
+}
+.table {
+    box-shadow: 0 5px 15px rgb(0, 0, 0, .2);
+}
+.btn {
+    box-shadow: 0 5px 15px rgb(0, 0, 0, .2);
+}
+.btn-1:hover {
+    transform: translate(2px ,2px);
+}
+.btn-2:hover {
+    transform: translate(-4px ,-4px);
+}
+.btn-3:hover {
+    transform: translate(2px ,-2px);
+}
+.card-block {
+    box-shadow: 0 5px 15px rgb(0, 0, 0, .2);
+}
+.card-auth {
+    box-shadow: 0 5px 15px rgb(0, 0, 0, .2);
+}
+
+

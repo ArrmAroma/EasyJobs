@@ -1,0 +1,125 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}FindJob{% endblock %}
+
+{% block content %}
+
+def edit_job(request, job_id):
+    if request.method == "POST":
+        try:
+            job = Job.objects.get(id=job_id)
+            position  = request.POST['position']
+            category  = request.POST['category']
+            salary = request.POST['salary']
+            quantity = request.POST['quantity']
+            type = request.POST['type']
+            logo = request.POST['logo']
+            gpa = request.POST['gpa']
+            description = request.POST['description']
+            property = request.POST['property']
+            welfare = request.POST['welfare']
+            experience = request.POST['experience']
+            working_time = request.POST['working_time']
+            
+            posted_date = datetime.utcnow()
+            job.save()
+            print(job)
+
+            
+        
+        except:
+            pass
+       
+   
+        return redirect('/myjob')
+
+
+        elif request.method == "POST":
+
+        try:
+            job = Job.objects.get(id=job_id)
+            position  = request.POST['position']
+            category  = request.POST['category']
+            salary = request.POST['salary']
+            quantity = request.POST['quantity']
+            type = request.POST['type']
+            logo = request.POST['logo']
+            gpa = request.POST['gpa']
+            description = request.POST['description']
+            property = request.POST['property']
+            welfare = request.POST['welfare']
+            experience = request.POST['experience']
+            working_time = request.POST['working_time']
+            
+            posted_date = datetime.utcnow()
+            job.save()
+            print(job)
+        except:
+            pass
+
+        return redirect('/myjob'
+
+
+def CompRegister(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        compname = request.POST['compname']
+        category = request.POST['category']
+        address = request.POST['address']
+        phone = request.POST['phone']
+        print(email, password, compname, category, address, phone)
+        entrepre = Entrepreneur.objects.filter(
+            Q(compname=compname) | Q(email=email))
+        print(entrepre)
+        if entrepre:
+            return redirect('/CompRegister')
+        else:
+            entrepre = Entrepreneur.objects.create(
+                compname=compname, password=password, email=email, category=category, address=address, phone=phone)
+            entrepre.save()
+            return redirect('login')
+    else:
+        return render(request, 'home/CompRegister.html')
+
+
+
+def Login(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        print(email, password)
+        user = User.objects.get(email=email)
+        print(user)
+        if user:
+            auth_user = authenticate(
+                request, username=user.username, password=password)
+            if auth_user is not None:  # login success
+                login(request, auth_user)
+                return redirect('/')
+            else:
+                return redirect('login')
+    else:
+        return render(request, 'home/login.html')
+
+
+def Login(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        print(email, password)
+        entrepreneur = Entrepreneur.objects.get(email=email)
+        print(entrepreneur)
+        if entrepreneur:
+            entrepreneur = authenticate(
+                request, email=entrepreneur.email, password=password)
+            if entrepreneur is not None:  # login success
+                login(request, entrepreneur)
+                
+                return redirect('/')
+            else:
+                return redirect('login')
+    else:
+        return render(request, 'home/login.html')
+
+{% endblock %}

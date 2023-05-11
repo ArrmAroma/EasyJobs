@@ -1,0 +1,121 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}{{ jobs.position }} | EasyJob{% endblock %}
+
+{% block content %} 
+
+<div class="container mt-4">
+         
+    <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+        <a href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+        </a>
+    </div>
+
+
+    <h5 class="mx-4 mt-5 fw-bold" style="font-size: xx-large;">งานที่สมัคร</h5>
+
+    <div class="row">
+            
+        
+        <div class="col">
+            
+                <div class="row g-0">
+                    <div class="col">
+                        <div class="mb-3 me-4 mt-4 mx-3" >
+                            <div class="row g-0 justify-content-center">
+                                <table class="table text-center">
+                                    <thead class="table-primary" >
+                                    <tr style="font-size: x-large;">
+                                        <th scope="col">No.</th>
+                                        <th scope="col" >ตำแหน่ง</th>
+                                        <th scope="col">บริษัท</th>
+                                        <th scope="col">วันที่สมัคร</th>
+                                        <th scope="col">ดูรายละเอียดงานที่สมัคร</th>
+                                    </tr>
+                                    </thead>
+                                    {% for i in list_apply %}
+                                    <tbody class="table-light">
+                                    <tr style="font-size: larger;">
+                                        <td>{{ forloop.counter }} </td>
+                                        <td>{{ i.position }}</td>
+                                        <td>{{ i.compname }}</td>
+                                        <td>{{ i.apply_date }}</td>
+                                        <td>
+                                            <a href="/{{ i.job_id }}" class="mx-2 d-flex justify-content-center btn-3"> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" style="color: rgb(46, 67, 185);" width="23" height="23" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                            </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                                
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination d-flex justify-content-start">
+                                            <li class="page-item">
+                                            <a class="page-link" href="?page={{ prvpage }}" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                            </li>
+                                            <!-- {% if jobs.number > 1 %}
+                                            <li class="page-item"><a class="page-link" href="?page={{ prvpage }}">{{ prvpage }}</a></li>
+                                            {% endif %} -->
+                                            <li class="page-item active"><a class="page-link" href="#">{{ list_apply.number }}</a></li>
+                                            <!-- <li class="page-item"><a class="page-link" href="?page={{ nextpage }}">{{ nextpage }}</a></li> -->
+                                            <li class="page-item">
+                                            <a class="page-link" href="?page={{ nextpage }}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                
+                               
+                                
+                                <!-- <nav aria-label="...">
+                                    <ul class="pagination">
+                                      {% if list_apply.has_previous %}
+                                      <li class="page-item">
+                                        <a class="page-link" href="?page={{ list_apply.previous_page_number }}">Previous</a>
+                                      </li>
+                                      {% endif %}
+                                      
+                                      <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">{{ list_apply.number }}</a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">{{ list_apply.paginator.num_pages }}</a></li>
+                                      {% if list_apply.has_next %}
+                                      <li class="page-item">
+                                        <a class="page-link" href="?page={{ list_apply.next_page_number }}">Next</a>
+                                      </li><br>
+                                      {% endif %}
+                                      
+                                    </ul>
+                                    
+                                  </nav> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                    
+                
+
+           
+        </div>
+        
+
+    </div>
+    
+</div>
+    
+      
+
+{% endblock %}

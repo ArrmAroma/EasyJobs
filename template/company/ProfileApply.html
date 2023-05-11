@@ -1,0 +1,149 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %} Profile | {{member.username}} {% endblock %}
+
+{% block content %} 
+
+    <div class="container mt-4">
+        {% if request.user.is_authenticated and request.user.is_staff == False %} 
+        <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+            <a href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </a>
+        </div>
+        {% elif request.user.is_authenticated and request.user.is_staff == True %} 
+        <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+            <a href="/myjob">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </a>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="col d-flex justify-content-center">
+                
+                <div class="card mb-3 me-4 " style="width: 900px;">
+                    <div class="container">
+                        <div class="row g-0">
+                            <div class="col">
+                                <div class="mb-3 me-4 mt-4 mx-3" >
+                                    <div class="row g-0">
+                                        
+                                        <div class="col-md-2 mt-3 mx-4">
+                                            <img src="{% static 'home\images\profile-pic.jpeg' %}" class="img-fluid rounded-start mb-3" width="" alt="...">
+                                        </div>
+                                        
+                                        <div class="col-md-9 d-flex">
+                                            <div class="card-body  text-menu">
+                                                <h5 class="text-dark mb-4 fw-bold">{{ member.username }}</h5>
+                                                <span class="card-type fw-bold">ชื่อไทย :</span> {{ member.name_th }}<br>
+                                                <span class="card-category fw-bold">Email:</span> {{ member.email }}<br>
+                                                <span class="card-salary fw-bold">เบอร์โทรติดต่อ :</span> {{ member.phone }}<br>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+ 
+                    </div>
+                    <div class="col">
+                        <div class="row mb-3 d-flex justify-content-between">
+                            <div class="col-md-4 col-sm-6 mx-3">
+                                <strong class="h6">ชื่อ-สกุล(ไทย)</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.name_th }} </label>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <strong class="h6">ชื่อ-สกุล(อังกฤษ)</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.name_eng }} </label>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mx-2">
+                                <strong class="h6">วันเกิด</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.birth_day }} </label> 
+                            </div>
+                            
+                        </div>
+
+                        <div class="row mx-2 mb-3 mt-4 d-flex justify-content-between">
+                            <div class="col-md-2 ">
+                                <strong class="h6">เพศ</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.sex  }} </label> 
+                            </div>
+                            <div class="col-md-3 ">
+                                <strong class="h6">สัญชาติ</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.nationality  }} </label> 
+                            </div>
+                            <div class="col-md-3 ">
+                                <strong class="h6">ศาสนา</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.religion  }} </label> 
+                            </div>
+                            <div class="col-md-4 ">
+                                <strong class="h6">สถานศึกษา</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" >{{ member.school  }} </label> 
+                            </div>
+   
+                        </div>
+                        
+                        <div class="row mx-1 mb-3 mt-4 d-flex justify-content-between">
+                            <div class="col-md-3 ">
+                                <strong class="h6">การศึกษา</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="education_level">{{member.education_level}}</label>
+                            </div>
+                            <div class="col-md-3 ">
+                                <strong class="h6">คณะ</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="faculty">{{member.faculty}}</label>
+                            </div>
+                            <div class="col-md-3 ">
+                                <strong class="h6">สาขา</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="major">{{member.major}}</label>
+                            </div>
+                            <div class="col-md-3 ">
+                                <strong class="h6">หมวดหมู่การศึกษา</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="education_category"  >{{member.education_category}}</label>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row mb-3 mt-4 d-flex justify-content-between">
+                            <div class="col-md-3 col-sm-6 mx-3">
+                                <strong class="h6">สถานะการศึกษา</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="state">{{member.state}}</label> 
+                            </div>
+                            <div class="col-md-1 col-sm-6">
+                                <strong class="h6">ชั้นปี</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="year">{{member.year}}</label>
+                            </div>
+                            <div class="col-md-3 col-sm-6 mx-2">
+                                <strong class="h6">เกรดเฉลี่ย</strong><br>
+                                <label type="text" class="form-control pt-2 mt-1" name="gpa">{{member.gpa}}</label> 
+                            </div>
+                            <div class="col-md-3 col-sm-6 mx-2">
+                                <strong class="h6">เบอร์โทรติดต่อ</strong><br>
+                                <labelt type="text" class="form-control pt-2 mt-1" name="phone">{{member.phone}}</label>
+                            </div>
+                            
+                        </div>
+                        
+                        <hr class="mx-4 mt-5 mb-4" style="width: 96%;">
+                        
+
+                        
+                        
+                    </div>
+                   
+                    
+                   
+
+                </div>
+            </div>
+            
+
+        </div>
+
+    </div> 
+
+{% endblock %}

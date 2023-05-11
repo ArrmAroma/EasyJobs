@@ -1,0 +1,16 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}{{ job.position }} | EasyJob{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <form class="d-grid justify-content-between" action="/upload_images" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       
+        {{form}}
+
+        <input type="submit" value="Upload" class="btn btn-primary mt-3">
+    </form>
+</div>
+
+{% endblock %}

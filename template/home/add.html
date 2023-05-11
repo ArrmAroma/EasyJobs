@@ -1,0 +1,62 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}AddJob{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-md-center" >
+
+    <div class="row mt-5 pt-4" style="width : 40rem">
+        <div class="col">
+
+            <div class="card" >
+                <div class="card-header text-center">
+                    <h5>ลงประกาศงาน</h5>
+                </div>
+                   
+                <div class="card-body">
+                    <form action="/CreateJob" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+
+                            ประเภทงาน : <input type="text" class="form-control pt-2" name="category" id="" >
+                            
+                            รูปแบบงาน : <input type="text" class="form-control pt-2" name="type" id="" >
+
+                            ตำแหน่งงาน : <input type="text" class="form-control pt-2" name="position" id="" > 
+
+                            จำนวน : <input type="" class="form-control pt-2" name="quantity" id="">
+                            
+                            GPA : <input type="" class="form-control pt-2" name="gpa" id="" >
+
+                            ประสบการณ์(ปี): <input type="integer" class="form-control pt-2" name="experience" id="" >
+
+                            เงินเดือน : <input type="integer" class="form-control pt-2" name="salary" id="" >
+
+                            รายละเอียดงาน : <textarea type="" class="form-control pt-2" name="description" id=""></textarea>
+
+                            คุณสมบัติ : <textarea type="" class="form-control pt-2" name="property" id="" ></textarea>
+
+                            สวัสดิการ : <textarea type="" class="form-control pt-2" name="welfare" id="" ></textarea>
+
+                            LOGO : <input type="file" class="form-control pt-2" id="avatar" name="logo" accept="image/png, image/jpeg">
+                            
+                            <div class="d-grid gap-4 mt-4 d-flex justify-content-md-start">
+                                <button type="button" class="btn btn-danger me-md-2">
+                                    <a href="/myjob"><span class="text-light">ยกเลิก</span></a>
+                                </button>
+                            
+                                <button class="btn btn-success" type="submit">ตกลง</button>
+                            </div>
+                        </div>
+        
+                    </form>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>     
+</div>
+
+{% endblock %}

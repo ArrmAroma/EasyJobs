@@ -1,0 +1,164 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}รายชื่อผู้สมัคร {{ position }} | {{user.username}}{% endblock %}
+
+{% block content %} 
+
+    <div class="container mt-4">
+        {% if user.is_authenticated %}
+        <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+            <a href="/myjob">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </a>
+        </div>
+        {% elif not user.is_authenticated %}
+        <div class="gap-4 mt-4 mb-2 d-flex justify-content-start">
+            <a href="/FindJob">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+            </a>
+        </div>
+        {% endif %}
+        {{ category }}
+        <div class="row">
+            
+            {% for job in jobs %}
+            <div class="col">
+                
+               
+                <div class="card mb-3 me-4 mt-4 " id="card-bg">
+                    <div class="row g-0">
+                        <div class="col">
+                            <div class="mb-3 me-4 mt-4 mx-3" >
+                                <div class="row g-0">
+                                    <div class="col-md-2 mt-3 mb-4">
+                                        <img src="{% static logo.url %}" class="img-fluid rounded-start mb-3" width="200" alt="...">
+                                    </div>
+                                    
+                                    <div class="col d-flex">
+                                        
+                                        <div class="card-body">
+                                            <h5 class="text-dark mb-4 fw-bold">{{ job.position }}</h5>
+                                            <span class="h6">ประเภทงาน : </span>{{ job.category }}<br>                           
+                                            <span class="h6">จำนวน : </span>{{ job.quantity }} อัตรา<br>
+                                            <span class="h6">รูปแบบงาน : </span>{{ job.type }}<br>
+                                            
+                                    
+                                        </div>
+                                         
+                                        <div>
+                                            <form method="post" action="/{{ job.id }}/Delete">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger mt-3" style="font-size: larger;" onclick="return confirm('ปิดรับสมัครงานสำหรับตำแหน่ง {{ job.position }} ?')">ปิดรับสมัครงานนี้</button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div> 
+                                     
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+
+                     <div class="row mx-2 mb-2">   <!--รายชื่อผู้สมัคร -->
+                        <div class="col col-md-1 col-sm-6 mb-3">
+                            <strong class="h3 fw-bold"> No.</strong><br>
+                            
+                        </div>
+                        <div class="col col-md-3 col-sm-6 mb-3">
+                            <strong class="h3 fw-bold"> รายชื่อผู้สมัคร </strong><br>
+                            
+                        </div>
+                        <div class="col d-flex justify-content-center col-md-3 col-sm-6 mb-3 mx-3">
+                            <strong class="h3 fw-bold"> วันที่สมัคร </strong><br>
+                            
+                        </div>
+                        <hr>
+            
+                        
+
+                        {% for name in list_apply %}
+                        <div class="row d-flex justify-content-between">
+                            
+                                <div class="col  d-flex justify-content-between">
+                                    
+                                   
+                                    <div class="col-md-1 col-sm-6">
+                                        <strong class="h4"> {{ forloop.counter }} .</strong><br>
+                                        
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 mx-3">
+                                        <strong class="h4"> {{name.members}} </strong><br>
+                                        
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 d-flex justify-content-center">
+                                        <strong class="h4"> {{name.apply_date}} </strong><br>
+                                        
+                                    </div>
+                                    <hr>
+                                    
+                                    
+                            
+                           
+                                    <div class="col d-flex justify-content-end">
+                                        
+                                        <form method="post" class="mb-2 mx-2" action="/ProfileApply/{{ name.member_id }}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="40" style="color: rgb(50, 149, 241);" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
+                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                        <form method="post" class=" mb-2" action="/Delete_Volunteer/{{ name.id }}/{{ job.id }}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" href="" onclick="return confirm('ต้องการลบ {{name.members}} จากรายชื่อผู้สมัคร ?')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="40" style="color: rgb(50, 149, 241);" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                            </button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            
+                        </div> 
+                        <hr>
+                        {% endfor %}
+                        
+                        <nav aria-label="..." class="mx-2 mt-3">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                  <a class="page-link">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                  <a class="page-link" href="#">Next</a>
+                                </li>
+                              </ul>
+                          </nav>
+                       
+                        
+                    </div>
+
+                    
+                    
+
+                </div>
+            </div>
+            {% endfor %}
+            
+
+        </div>
+
+    </div> 
+
+{% endblock %}

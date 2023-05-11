@@ -1,0 +1,22 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}{{ job.position }} | EasyJob{% endblock %}
+
+{% block content %}
+<div class="card card-span rounded-1">
+    <div class="card card-span rounded-1"><img src="../../static/images/GettyImages-1271072224.jpeg"
+        class="img-fluid" alt="..."></div>
+</div>
+
+<div class="card card-span rounded-1">
+    <div class="card card-span rounded-1">
+        {{ image.name_Image }} <br>
+        {{ image.image }}
+        
+        <img src="{{ image.image.url }}" alt="{{ image.name }}">
+        <img src="{{ jobs.logo.url }}" alt="...">
+    </div>
+</div>
+
+
+{% endblock %}

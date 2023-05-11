@@ -1,0 +1,135 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}MyJob{% endblock %}
+
+{% block content %} 
+     
+<div class="container" >
+
+    <div class="row d-flex justify-content-between row-cols-1 row-cols-md-2 g-3 mt-3">
+
+        <div class="d-grid gap-4 mt-4 mb-2 d-flex justify-content-md-start"> 
+            <button class="btn btn-success" type="button">
+                    <a href="/CreateJob"><span class="text-light" style="font-size: larger;">เพิ่มรับสมัครพนักงาน</span></a>
+            </button>
+        </div>
+    
+        <div class="col" style="width: 900px;">
+            <div class="colum card border-0" >
+
+                {% for job in job_filter %}
+                <div class="col">
+                    <div class="card mb-3 me-4 mt-4 mx-3" id="card-bg">
+                        <div class="row g-0">
+                            
+                            <div class="col-md-2 mt-3 mx-4">
+                                <img src="{% static logo.url %}" class="img-fluid rounded-start mb-3" width="200" alt="...">
+                            </div>
+                            <div class="col-md-9 d-flex">
+                                <div class="card-body">
+                                    <h5 class="mb-4">{{ job.position }}</h5>
+                                    <span class="card-salary fw-bold">เงินเดือน : </span> {{ job.salary }}<br>
+                                    <span class="card-quantity fw-bold">จำนวน : </span> {{ job.quantity }} อัตรา<br>
+                                    <span class="card-type fw-bold"></span>{{ job.type }}<br>
+                                      
+
+                                </div>
+                                <div>
+                                    <a href="/views/{{ job.id }}" class="btn mt-3 mx-2"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="/{{ job.id }}/Edit" class="btn mt-3 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                          </svg>
+                                    </a>
+                                </div>
+                            </div>  
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                {% endfor %} 
+                
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination d-flex justify-content-center mt-2">
+                        <li class="page-item">
+                        <a class="page-link" href="?page={{ prvpage }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        </li>
+                    
+                        <li class="page-item active"><a class="page-link" href="#">{{ jobs.number }}</a></li>
+                        
+                        <li class="page-item">
+                        <a class="page-link" href="?page={{ nextpage }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+
+        <div class="col" style="width: 400px;">
+
+            <div class="card mx-5" >
+                <div class="card-block">
+                    <h4 class="d-flex justify-content-md-center text-light" style="background-color: rgb(38, 96, 221); height: 2.5rem;"><span class="mt-1">ค้นหางาน <i class="bi bi-search"></i></span> </h4>
+                    <div class="card-text mt-4 mx-3">
+                        <form method="get">
+                            <div class="container d-grid justify-content-md-center">
+                                
+                                <label class="d-flex justify-content-md-center form-label">*ตำแหน่งงาน*</label>
+                                <!-- <input class="form-control mb-1 mx-1" style="width: 95%;" type="text" name="position">-->{{myFilter.form.position}}<br> 
+                               
+
+                            </div>
+
+                            <div class="form-check mt-2 mx-4">
+                                <input class="form-check-input" type="radio" name="type"  value="งานประจำ">
+                                <label class="form-check-label" for="validationFormCheck1">
+                                    งานประจำ
+                                </label>
+                            </div>
+                            <div class="form-check mx-4">
+                                <input class="form-check-input" type="radio" name="type"  value="ฝึกงาน">
+                                <label class="form-check-label" for="validationFormCheck2">
+                                    ฝึกงาน
+                                </label>
+                            </div>
+                            <div class="form-check mx-4">
+                                <input class="form-check-input" type="radio" name="type"  value="งานพาร์ทไทม์">
+                                <label class="form-check-label" for="validationFormCheck3">
+                                    งานพาร์ทไทม์
+                                </label>
+                            </div>
+
+                            <div class="d-flex justify-content-center mb-3 g-4"> 
+                                <button class="btn btn-primary btn-block mt-3 mx-4 mb-2" type="submit">ค้นหา</button>
+                                <button class="btn btn-block mt-3 mx-4 mb-2" style="background-color: chocolate;"><a class="text-light" href="/myjob">รีเซ็ตค่า</a></button>
+                            </div>
+
+                        </form> 
+
+
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
