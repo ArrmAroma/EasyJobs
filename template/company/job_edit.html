@@ -64,7 +64,7 @@
                                             <strong class="h6">ประเภทงาน</strong><br>
                                             <div class="form-outline mb-4">
                                                 <select class="form-control" name="category" id="" required>
-                                                    <option value="{{comp.category}}"></option>
+                                                    <option value="{{jobs.category}}">{{jobs.category}}</option>
                                                     <option value="คอมพิวเตอร์/ไอที/โปรแกรมเมอร์">คอมพิวเตอร์/ไอที/โปรแกรมเมอร์</option>
                                                     <option value="โรงแรม/ท่องเที่ยว">โรงแรม/ท่องเที่ยว</option>
                                                     <option value="ขนส่งและโลจิสติกส์">ขนส่งและโลจิสติกส์</option>
@@ -91,7 +91,7 @@
                             <div class="row mx-2 mb-3 d-flex justify-content-between">
                                 <div class="col-md-4 col-sm-6">
                                     <strong class="h6">ตำแหน่ง</strong><br>
-                                    <input type="text" class="form-control pt-2" name="position" id="" placeholder="{{ jobs.position }}" required> 
+                                    <input type="text" class="form-control pt-2" name="position" id=""  value="{{ jobs.position }}" required> 
                                 </div>
                                 <div class="col-md-3 col-sm-6">
                                     <strong class="h6">ประสบการณ์</strong><br>

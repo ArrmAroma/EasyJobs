@@ -18,10 +18,7 @@
         <div class="card card-span rounded-1"><img src="../../static/home/images/GettyImages-1271072224.jpeg"
             class="img-fluid" alt="..."></div>
       </div>
-      <button type="button" class="btn btn-secondary btn-lg mt-4 mx-5" id="btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16" id="star">
-              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-          </svg>
+      <button type="button" class="btn btn-success btn-lg mt-4 mx-5" >
         งานล่าสุด
       </button>
       
@@ -57,28 +54,10 @@
           </div>
           {% endfor %} 
         </div>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination d-flex justify-content-center">
-              <li class="page-item">
-              <a class="page-link" href="?page={{ prvpage }}" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-              </a>
-              </li>
-              <!-- {% if jobs.number > 1 %}
-              <li class="page-item"><a class="page-link" href="?page={{ prvpage }}">{{ prvpage }}</a></li>
-              {% endif %} -->
-              <li class="page-item active"><a class="page-link" href="#">{{ jobs.number }}</a></li>
-              <!-- <li class="page-item"><a class="page-link" href="?page={{ nextpage }}">{{ nextpage }}</a></li> -->
-              <li class="page-item">
-              <a class="page-link" href="?page={{ nextpage }}" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-              </a>
-              </li>
-          </ul>
-        </nav> 
+       
       </div><hr>
 
-        <button type="button" class="btn btn-secondary btn-lg mt-4 mx-5" id="btn">
+        <button type="button" class="btn btn-primary btn-lg mt-4 mx-5">
           งานทั้งหมด
         </button>
         
@@ -115,6 +94,13 @@
             </div>
             {% endfor %} 
           </div>
+          <div class="mx-3 mb-3 d-flex justify-content-md-center">
+            <a  href="/FindJob" class="btn btn-primary btn-lg mt-4 mb-3 mx-5">
+              เพิ่มเติม
+            </a>
+            
+          </div>
+          
           
         </div>  
     {% elif not request.user.is_authenticated %}
@@ -123,10 +109,7 @@
             class="img-fluid" alt="...">
         </div>
       </div>
-      <button type="button" class="btn btn-secondary btn-lg mt-4 mx-5" id="btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill mb-1" viewBox="0 0 16 16" id="star">
-              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-          </svg>
+      <button type="button" class="btn btn-success btn-lg mt-4 mx-5" >
         งานล่าสุด
       </button>
       
@@ -162,11 +145,17 @@
           </div>
           
           {% endfor %} 
+          
 
         </div>
-        
+        <div class="mx-3 mb-3 d-flex justify-content-md-center">
+          <a  href="/FindJob" class="btn btn-primary btn-lg mt-4 mb-3 mx-5">
+            เพิ่มเติม
+          </a>
+          
+        </div>
 
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
           <ul class="pagination d-flex justify-content-center">
               <li class="page-item">
               <a class="page-link" href="?page={{ prvpage }}" aria-label="Previous">
@@ -178,14 +167,14 @@
               <li class="page-item"><a class="page-link" href="?page={{ prvpage }}">...</a></li>
               {% endif %}
               <li class="page-item active"><a class="page-link" href="#">{{ jobs.number }}</a></li>
-              <!-- <li class="page-item"><a class="page-link" href="?page={{ nextpage }}">{{ nextpage }}</a></li> -->
+             
               <li class="page-item">
               <a class="page-link" href="?page={{ nextpage }}" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
               </a>
               </li>
           </ul>
-        </nav>
+        </nav> -->
         
       </div>
     {% endif %}

@@ -1,3 +1,4 @@
+from ast import And
 import email
 from email.mime import image
 from turtle import home
@@ -84,7 +85,8 @@ def Create_Job(request):
 
 
         posted_date = datetime.utcnow()
-        job = Job.objects.filter(position=position)
+
+        job = Job.objects.filter(Q(position=position) and Q(compname=company))
 
         if job:
             messages.success(request, ("ตำแหน่งนี้เคยลงประกาศแล้ว, โปรดระบุตำแหน่งใหม่..."))

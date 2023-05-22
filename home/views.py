@@ -227,6 +227,7 @@ def MemberRegister(request):
                 username=username, password=password, email=email, is_active=True, is_staff=False
             )
             user.save()
+            messages.success(request, ("สมัครสำเร็จ"))
             return redirect('login')
     else:
         return render(request, 'home/MemberRegister.html')
